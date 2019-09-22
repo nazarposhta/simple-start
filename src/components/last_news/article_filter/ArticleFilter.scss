@@ -1,0 +1,13 @@
+.article-filter {
+    @media (min-width: 768px) {
+        padding-top: 2.5rem;
+    }
+    .form-group.form-check {
+        @media (max-width: 768px) {
+            display: inline-block;
+            &[data-id="sports"] {
+                margin-left: 1rem;
+            }
+        }
+    }
+}

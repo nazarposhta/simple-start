@@ -1,0 +1,23 @@
+.article-list {
+    position: relative;
+    .sort-row {
+        .sort-btn {
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            position: absolute;
+            top: -6rem;
+            right: 0px;
+        }
+    }
+    .no-result {
+        text-align: center;
+        p {
+            font-size: 20px;
+        }
+        i {
+            font-size: 100px;
+            color: #e8e8e8;
+        }
+    }
+}

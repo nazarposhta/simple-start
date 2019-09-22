@@ -1,0 +1,29 @@
+.article-preview {
+    margin: 1rem 0px;
+    .preview-head {
+        position: relative;
+        .preview-title {
+            padding-right: 5rem;
+        }
+        .preview-date {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            color: #b8b8b8;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .preview-head {
+            .preview-title {
+                padding-right: 0px;
+            }
+            .preview-date {
+                position: static;
+            }
+        }
+        .preview-preamble {
+            display: none;
+        }
+    }
+}
