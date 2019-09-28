@@ -19,18 +19,19 @@ const sourceList = [
   },
 ];
 class ArticleFilter extends Component {
-  async updateSources(e, url, title) {
+  updateSources(e, url, title) {
     const { filteringData, showError, concatingData } = this.props;
     if (e.target.checked) {
-      try {
-        const result = await executeUrl(url);
-        concatingData({
-          data: result,
-          category: url,
+      executeUrl(url)
+        .then((res) => {
+          concatingData({
+            data: res,
+            category: url,
+          });
+        })
+        .catch(() => {
+          showError('Unexpected error');
         });
-      } catch (error) {
-        showError('Unexpected error');
-      }
     } else {
       filteringData({
         title, url,
