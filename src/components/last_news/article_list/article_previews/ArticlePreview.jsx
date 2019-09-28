@@ -32,11 +32,12 @@ function ArticlePreview(props) {
 }
 ArticlePreview.defaultProps = {
   image: '',
+  preamble: '',
 };
 ArticlePreview.propTypes = {
   image: PropTypes.string,
   title: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
-  preamble: PropTypes.string.isRequired,
+  preamble: PropTypes.string,
 }
 export default ArticlePreview;

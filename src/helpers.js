@@ -31,41 +31,8 @@ export const parseDate = (str) => {
  * @param url
  * @returns {Promise<any>}
  */
-const executeUrl = (url) => new Promise(((resolve, reject) => {
-  const xhr = new XMLHttpRequest();
-  xhr.open('GET', url);
-  xhr.onload = function () {
-    const json = JSON.parse(xhr.response);
-    if (xhr.status === 200 || xhr.status === 404) {
-      resolve(json);
-    } else {
-      reject(json);
-    }
-  };
-  xhr.onerror = function (error) {
-    reject(error);
-  };
-  xhr.send();
-}));
-
-/**
- * Asynchronous function which execute a bunch of GET requests then
- * merges data from the server
- * @param sources {Array}
- * @returns {Promise<any>}
- */
-export const getData = (sources) => {
-  const arrayOfPromises = [];
-  sources.forEach((source) => {
-    arrayOfPromises.push(executeUrl(`http://localhost:6010${source}`));
-  });
-  let articles = [];
-  return Promise.all(arrayOfPromises)
-    .then((art) => {
-      art.forEach((bunch) => {
-        articles = [...articles, ...bunch.articles];
-      });
-      return articles;
-    })
-    .catch((err) => err);
-};
+export const executeUrl = async (url) => {
+  const response = await fetch(`http://localhost:6010${url}`);
+  const result = await response.json();
+  return result;
+}

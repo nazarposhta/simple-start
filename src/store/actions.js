@@ -1,4 +1,10 @@
-import { ACTION_REFETCH_DATA, ACTION_TOGGLE_SORT, ACTION_CHANGE_SOURCE } from './constants';
+import {
+  ACTION_REFETCH_DATA,
+  ACTION_TOGGLE_SORT,
+  SHOW_ERROR,
+  FILTERING_DATA,
+  CONCATING_DATA,
+} from './constants';
 
 export const actionRefetchData = (updatedData) => ({
   type: ACTION_REFETCH_DATA,
@@ -9,7 +15,17 @@ export const actionToggleSort = (sortState) => ({
   payload: sortState,
 });
 
-export const actionChangeSource = (source) => ({
-  type: ACTION_CHANGE_SOURCE,
+export const actionShowError = (source) => ({
+  type: SHOW_ERROR,
+  payload: source,
+});
+
+export const actionFilteringData = (source) => ({
+  type: FILTERING_DATA,
+  payload: source,
+});
+
+export const actionConcatingData = (source) => ({
+  type: CONCATING_DATA,
   payload: source,
 });

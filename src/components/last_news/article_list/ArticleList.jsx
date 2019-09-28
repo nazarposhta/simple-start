@@ -3,21 +3,20 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import { actionRefetchData, actionToggleSort } from '../../../store/actions';
-import { getData } from '../../../helpers';
+import { actionRefetchData, actionToggleSort, actionShowError } from '../../../store/actions';
+import { executeUrl } from '../../../helpers';
 import ArticlePreview from './article_previews/ArticlePreview';
 import './ArticleList.scss';
 
 class ArticleList extends Component {
-  componentDidMount() {
-    const { refetch, sources } = this.props;
-    getData(sources)
-      .then((art) => {
-        refetch(art);
-      })
-      .catch((err) => {
-        refetch(err);
-      });
+  async componentDidMount() {
+    const { refetch, sources, showError } = this.props;
+    try {
+      const result = await executeUrl(sources[0]);
+      refetch(result);
+    } catch (e) {
+      showError('Unexpected error');
+    }
   }
 
   render() {
@@ -74,20 +73,14 @@ class ArticleList extends Component {
   }
 }
 ArticleList.propTypes = {
+  showError: PropTypes.func.isRequired,
   toggleSort: PropTypes.func.isRequired,
   refetch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   sort: PropTypes.bool.isRequired,
-  articles: PropTypes.shape([{
-    id: PropTypes.string,
-    date: PropTypes.instanceOf(Date),
-    image: PropTypes.string,
-    category: PropTypes.string,
-    title: PropTypes.string,
-    preamble: PropTypes.string,
-  }]).isRequired,
+  articles: PropTypes.arrayOf(PropTypes.object).isRequired,
   sources: PropTypes.arrayOf(PropTypes.string).isRequired,
-}
+};
 export default connect(
   (state) => ({
     articles: state.articles,
@@ -98,5 +91,6 @@ export default connect(
   (dispatch) => ({
     refetch: bindActionCreators(actionRefetchData, dispatch),
     toggleSort: bindActionCreators(actionToggleSort, dispatch),
+    showError: bindActionCreators(actionShowError, dispatch),
   }),
 )(ArticleList);
