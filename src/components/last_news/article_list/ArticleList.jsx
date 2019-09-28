@@ -78,8 +78,15 @@ ArticleList.propTypes = {
   refetch: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
   sort: PropTypes.bool.isRequired,
-  articles: PropTypes.shape([]).isRequired,
-  sources: PropTypes.shape([]).isRequired,
+  articles: PropTypes.shape([{
+    id: PropTypes.string,
+    date: PropTypes.instanceOf(Date),
+    image: PropTypes.string,
+    category: PropTypes.string,
+    title: PropTypes.string,
+    preamble: PropTypes.string,
+  }]).isRequired,
+  sources: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 export default connect(
   (state) => ({

@@ -65,7 +65,7 @@ class ArticleFilter extends Component {
 ArticleFilter.propTypes = {
   refetch: PropTypes.func.isRequired,
   changeSource: PropTypes.func.isRequired,
-  sources: PropTypes.shape([]).isRequired,
+  sources: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 export default connect(
   (state) => ({
