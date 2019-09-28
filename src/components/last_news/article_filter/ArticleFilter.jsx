@@ -20,7 +20,7 @@ const sourceList = [
 ];
 class ArticleFilter extends Component {
   async updateSources(e, url, title) {
-    const { sources, refetch, filteringData, showError, concatingData } = this.props;
+    const { filteringData, showError, concatingData } = this.props;
     if (e.target.checked) {
       try {
         const result = await executeUrl(url);
@@ -64,9 +64,11 @@ class ArticleFilter extends Component {
   }
 }
 ArticleFilter.propTypes = {
+  filteringData: PropTypes.func.isRequired,
+  showError: PropTypes.func.isRequired,
   concatingData: PropTypes.func.isRequired,
   sources: PropTypes.arrayOf(PropTypes.string).isRequired,
-}
+};
 export default connect(
   (state) => ({
     sources: state.sources,

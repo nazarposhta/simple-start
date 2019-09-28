@@ -65,8 +65,8 @@ class ArticleList extends Component {
     return (
       <div className="article-list">
         <div className="no-result">
-          <p>No results</p>
-          <i className="fas fa-frown-open" />
+          <p className="h1">No results</p>
+          <i className="fas fa-frown-open display-1 text-black-50" />
         </div>
       </div>
     );

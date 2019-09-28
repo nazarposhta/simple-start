@@ -10,17 +10,10 @@
         @media (max-width: 768px) {
             position: absolute;
             top: -6rem;
-            right: 0px;
+            right: 0rem;
         }
     }
     .no-result {
         text-align: center;
-        p {
-            font-size: 20px;
-        }
-        i {
-            font-size: 100px;
-            color: #e8e8e8;
-        }
     }
 }

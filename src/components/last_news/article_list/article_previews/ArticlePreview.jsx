@@ -39,5 +39,5 @@ ArticlePreview.propTypes = {
   title: PropTypes.string.isRequired,
   date: PropTypes.instanceOf(Date).isRequired,
   preamble: PropTypes.string,
-}
+};
 export default ArticlePreview;

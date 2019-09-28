@@ -35,10 +35,10 @@ function LastNews(props) {
 }
 LastNews.defaultProps = {
   error: '',
-}
+};
 LastNews.propTypes = {
   error: PropTypes.string,
-}
+};
 export default connect(
   (state) => ({
     error: state.error,
